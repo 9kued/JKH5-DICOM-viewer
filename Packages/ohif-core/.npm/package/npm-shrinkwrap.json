@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "jquery": {
+      "version": "3.3.1",
+      "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.3.1.tgz",
+      "from": "jquery@>=1.7.0"
+    },
+    "twbs-pagination": {
+      "version": "1.4.1",
+      "resolved": "https://registry.npmjs.org/twbs-pagination/-/twbs-pagination-1.4.1.tgz",
+      "from": "twbs-pagination@1.4.1"
+    }
+  }
+}
