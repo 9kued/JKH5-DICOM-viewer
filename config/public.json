@@ -1,0 +1,16 @@
+{
+    "public": {
+        "verifyEmail": false,
+        "ui": {
+          "studyListFunctionsEnabled": true,
+          "leftSidebarOpen": false,
+          "displaySetNavigationLoopOverSeries": false,
+          "displaySetNavigationMultipleViewports": true,
+          "autoPositionMeasurementsTextCallOuts": "TRLB"
+        },
+        "prefetch": {
+          "order": "topdown",
+          "displaySetCount": 1
+        }
+    }
+}

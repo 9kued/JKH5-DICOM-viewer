@@ -1,4 +1,4 @@
-import { Meteor } from 'meteor/meteor';
+:import { Meteor } from 'meteor/meteor';
 import { Router } from 'meteor/iron:router';
 import { OHIF } from 'meteor/ohif:core';
 
@@ -71,40 +71,5 @@ if (Meteor.isClient) {
                 data: () => this.data
             });
         }
-    });
-}
-
-// This is ONLY for demo purposes.
-if (Meteor.isServer) {
-    // You can test this with:
-    // curl -v -H "Content-Type: application/json" -X GET 'http://localhost:3000/getData/testId'
-    //
-    // Or by going to:
-    // http://localhost:3000/api/testId
-
-    Router.route('/api/:id', { where: 'server' }).get(function() {
-        // "this" is the RouteController instance.
-        // "this.response" is the Connect response object
-        // "this.request" is the Connect request object
-        const id = this.params.id;
-
-        // Find the relevant study data from the Collection given the ID
-        const data = RequestStudies.findOne({ transactionId: id });
-
-        // Set the response headers to return JSON to any server
-        this.response.setHeader('Content-Type', 'application/json');
-        this.response.setHeader('Access-Control-Allow-Origin', '*');
-        this.response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-
-        // Change the response text depending on the available study data
-        if (!data) {
-            this.response.write('No Data Found');
-        } else {
-            // Stringify the JavaScript object to JSON for the response
-            this.response.write(JSON.stringify(data));
-        }
-
-        // Finalize the response
-        this.response.end();
     });
 }
