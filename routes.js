@@ -1,4 +1,4 @@
-:import { Meteor } from 'meteor/meteor';
+import { Meteor } from 'meteor/meteor';
 import { Router } from 'meteor/iron:router';
 import { OHIF } from 'meteor/ohif:core';
 
