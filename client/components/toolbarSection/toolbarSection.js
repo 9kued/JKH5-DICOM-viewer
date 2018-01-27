@@ -22,7 +22,7 @@ Template.toolbarSection.helpers({
                 svgLink: 'packages/ohif_viewerbase/assets/icons.svg#icon-studies',
                 svgWidth: 15,
                 svgHeight: 13,
-                bottomLabel: 'Series'
+                bottomLabel: '序列'
             }]
         };
     },
@@ -32,56 +32,56 @@ Template.toolbarSection.helpers({
 
         extraTools.push({
             id: 'stackScroll',
-            title: 'Stack Scroll',
+            title: 'Stack 滚动',
             classes: 'imageViewerTool',
             iconClasses: 'fa fa-bars'
         });
 
         extraTools.push({
             id: 'magnify',
-            title: 'Magnify',
+            title: '放大',
             classes: 'imageViewerTool toolbarSectionButton',
             iconClasses: 'fa fa-circle'
         });
 
         extraTools.push({
             id: 'wwwcRegion',
-            title: 'ROI Window',
+            title: 'ROI窗口',
             classes: 'imageViewerTool',
             iconClasses: 'fa fa-square'
         });
 
         extraTools.push({
             id: 'dragProbe',
-            title: 'Probe',
+            title: '探针',
             classes: 'imageViewerTool',
             iconClasses: 'fa fa-dot-circle-o'
         });
 
         extraTools.push({
             id: 'ellipticalRoi',
-            title: 'Ellipse',
+            title: '椭圆',
             classes: 'imageViewerTool',
             iconClasses: 'fa fa-circle-o'
         });
 
         extraTools.push({
             id: 'rectangleRoi',
-            title: 'Rectangle',
+            title: '矩形',
             classes: 'imageViewerTool',
             iconClasses: 'fa fa-square-o'
         });
 
         extraTools.push({
             id: 'invert',
-            title: 'Invert',
+            title: '反片',
             classes: 'imageViewerCommand',
             iconClasses: 'fa fa-adjust'
         });
 
         extraTools.push({
             id: 'clearTools',
-            title: 'Clear',
+            title: '清除',
             classes: 'imageViewerCommand',
             iconClasses: 'fa fa-trash'
         });
@@ -90,49 +90,49 @@ Template.toolbarSection.helpers({
 
         buttonData.push({
             id: 'zoom',
-            title: 'Zoom',
+            title: '缩放',
             classes: 'imageViewerTool',
             svgLink: 'packages/ohif_viewerbase/assets/icons.svg#icon-tools-zoom'
         });
 
         buttonData.push({
             id: 'wwwc',
-            title: 'Levels',
+            title: '调窗',
             classes: 'imageViewerTool',
             svgLink: 'packages/ohif_viewerbase/assets/icons.svg#icon-tools-levels'
         });
 
         buttonData.push({
             id: 'pan',
-            title: 'Pan',
+            title: '移动',
             classes: 'imageViewerTool',
             svgLink: 'packages/ohif_viewerbase/assets/icons.svg#icon-tools-pan'
         });
 
         buttonData.push({
             id: 'length',
-            title: 'Length',
+            title: '测量',
             classes: 'imageViewerTool toolbarSectionButton',
             svgLink: 'packages/ohif_viewerbase/assets/icons.svg#icon-tools-measure-temp'
         });
 
         buttonData.push({
             id: 'annotate',
-            title: 'Annotate',
+            title: '标注',
             classes: 'imageViewerTool',
             svgLink: 'packages/ohif_viewerbase/assets/icons.svg#icon-tools-measure-non-target'
         });
 
         buttonData.push({
             id: 'angle',
-            title: 'Angle',
+            title: '角度',
             classes: 'imageViewerTool',
             iconClasses: 'fa fa-angle-left'
         });
 
         buttonData.push({
             id: 'resetViewport',
-            title: 'Reset',
+            title: '重置',
             classes: 'imageViewerCommand',
             iconClasses: 'fa fa-undo'
         });
@@ -141,14 +141,14 @@ Template.toolbarSection.helpers({
 
             buttonData.push({
                 id: 'previousDisplaySet',
-                title: 'Previous',
+                title: '向前',
                 classes: 'imageViewerCommand',
                 iconClasses: 'fa fa-toggle-up fa-fw'
             });
 
             buttonData.push({
                 id: 'nextDisplaySet',
-                title: 'Next',
+                title: '向后',
                 classes: 'imageViewerCommand',
                 iconClasses: 'fa fa-toggle-down fa-fw'
             });
@@ -156,7 +156,7 @@ Template.toolbarSection.helpers({
             const { isPlaying } = OHIF.viewerbase.viewportUtils;
             buttonData.push({
                 id: 'toggleCinePlay',
-                title: () => isPlaying() ? 'Stop' : 'Play',
+                title: () => isPlaying() ? '停止' : '播放',
                 classes: 'imageViewerCommand',
                 iconClasses: () => ('fa fa-fw ' + (isPlaying() ? 'fa-stop' : 'fa-play')),
                 active: isPlaying
@@ -164,7 +164,7 @@ Template.toolbarSection.helpers({
 
             buttonData.push({
                 id: 'toggleCineDialog',
-                title: 'CINE',
+                title: '影片',
                 classes: 'imageViewerCommand',
                 iconClasses: 'fa fa-youtube-play',
                 active: () => $('#cineDialog').is(':visible')
@@ -173,14 +173,14 @@ Template.toolbarSection.helpers({
 
         buttonData.push({
             id: 'layout',
-            title: 'Layout',
+            title: '布局',
             iconClasses: 'fa fa-th-large',
             buttonTemplateName: 'layoutButton'
         });
 
         buttonData.push({
             id: 'toggleMore',
-            title: 'More',
+            title: '更多',
             classes: 'rp-x-1 rm-l-3',
             svgLink: 'packages/ohif_viewerbase/assets/icons.svg#icon-tools-more',
             subTools: extraTools
@@ -194,14 +194,14 @@ Template.toolbarSection.helpers({
 
         buttonData.push({
             id: 'previousPresentationGroup',
-            title: 'Prev. Stage',
+            title: '向前',
             iconClasses: 'fa fa-step-backward',
             buttonTemplateName: 'previousPresentationGroupButton'
         });
 
         buttonData.push({
             id: 'nextPresentationGroup',
-            title: 'Next Stage',
+            title: '向后',
             iconClasses: 'fa fa-step-forward',
             buttonTemplateName: 'nextPresentationGroupButton'
         });
