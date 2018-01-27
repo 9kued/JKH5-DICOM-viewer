@@ -1,10 +1,10 @@
 <template name="textMarkerDialogs">
     <dialog id="textMarkerOptionsDialog" oncontextmenu="return false" class="textMarkerDialog noselect">
-        <h5>Spine Labels</h5>
+        <h5>脊柱标签</h5>
         <a class="closeTextMarkerDialogs">{{> iconCrossCircle}}</a>
         <div class='optionsDiv'>
             <div class="select2-wrapper optionBox">
-                <label for="startFrom">Label: </label>
+                <label for="startFrom">标签: </label>
                 <select name="start" id="startFrom" tabindex="-1" class="select2">
                     <!-- Cervical spine !-->
                     <option value="C1" selected>C1</option>
@@ -45,17 +45,17 @@
                 </div>
             </div>
             <button id="clearLabels" class="btn viewerBtn btn-xs" type="button">
-                Clear Labels <i class="viewerIcon-clear"></i>
+                清除标签 <i class="viewerIcon-clear"></i>
             </button>
         </div>        
     </dialog>
 
     <dialog id="textMarkerRelabelDialog" oncontextmenu="return false" class="textMarkerDialog noselect">
-        <h5>Change Spine Label</h5>
+        <h5>修改脊柱标签</h5>
         <div class="relabelOptions">
 
             <div class="select2-wrapper optionBox">
-                <label for="relabelSelect">Label:</label>
+                <label for="relabelSelect">标签:</label>
                 <select name="relabelSelect" class="relabelSelect">
                     <!-- Cervical spine !-->
                     <option value="C1">C1</option>
@@ -90,8 +90,8 @@
             </div>
         </div>
         <div class="relabelButtons">
-            <button class="relabelRemove btn btn-xs btn-secondary viewerBtn">Delete</button>
-            <button class="relabelConfirm btn btn-xs viewerBtn">Save</button>
+            <button class="relabelRemove btn btn-xs btn-secondary viewerBtn">删除</button>
+            <button class="relabelConfirm btn btn-xs viewerBtn">保存</button>
         </div>
         <div class="dialog arrow">
         </div>
