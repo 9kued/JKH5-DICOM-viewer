@@ -32,7 +32,7 @@ Template.toolbarSection.helpers({
 
         extraTools.push({
             id: 'stackScroll',
-            title: 'Stack 滚动',
+            title: '滚动',
             classes: 'imageViewerTool',
             iconClasses: 'fa fa-bars'
         });
