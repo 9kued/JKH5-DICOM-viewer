@@ -84,22 +84,24 @@ Template.viewer.onCreated(() => {
     OHIF.viewer.StudyMetadataList.removeAll();
 
     OHIF.viewer.data.studyInstanceUids = [];
-    if (instance.data) {
-        instance.data.studies.forEach(study => {
-            const studyMetadata = new OHIF.metadata.StudyMetadata(study, study.studyInstanceUid);
-            let displaySets = study.displaySets;
-    
-            if(!study.displaySets) {
-                displaySets = OHIF.viewerbase.sortingManager.getDisplaySets(studyMetadata);
-                study.displaySets = displaySets;
-            }
-    
-            study.selected = true;
-            OHIF.viewer.Studies.insert(study);
-            OHIF.viewer.StudyMetadataList.insert(studyMetadata);
-            OHIF.viewer.data.studyInstanceUids.push(study.studyInstanceUid);
-        });
+    if (instance.data == null) {
+        alert('请在URL地址使用?url=${yourJSONURL}获取检查数据')
+        return;
     }
+    instance.data.studies.forEach(study => {
+        const studyMetadata = new OHIF.metadata.StudyMetadata(study, study.studyInstanceUid);
+        let displaySets = study.displaySets;
+
+        if(!study.displaySets) {
+            displaySets = OHIF.viewerbase.sortingManager.getDisplaySets(studyMetadata);
+            study.displaySets = displaySets;
+        }
+
+        study.selected = true;
+        OHIF.viewer.Studies.insert(study);
+        OHIF.viewer.StudyMetadataList.insert(studyMetadata);
+        OHIF.viewer.data.studyInstanceUids.push(study.studyInstanceUid);
+    });
     
 });
 
