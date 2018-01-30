@@ -1,7 +1,6 @@
 {
     "studies": [{
         "studyInstanceUid": "23.23.21.3.32",
-        "patientName": "Patient Name",
         "seriesList": [{
             "seriesInstanceUid": "1.23.2.32.1.2.1.3.2",
             "seriesDescription": "Wikipedia Samples",
