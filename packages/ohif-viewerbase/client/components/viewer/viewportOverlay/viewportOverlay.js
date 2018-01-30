@@ -163,12 +163,12 @@ Template.viewportOverlay.helpers({
 
         if (instance.lossyImageCompression === '01' &&
             instance.lossyImageCompressionRatio !== '') {
-            const compressionMethod = instance.lossyImageCompressionMethod || 'Lossy: ';
+            const compressionMethod = instance.lossyImageCompressionMethod || '有损: ';
             const compressionRatio = parseFloat(instance.lossyImageCompressionRatio).toFixed(2);
             return compressionMethod + compressionRatio + ' : 1';
         }
 
-        return 'Lossless / Uncompressed';
+        return '无损/未压缩';
     },
     tagDisplayLeftOnly() {
         Session.get('CornerstoneNewImage' + this.viewportIndex);
