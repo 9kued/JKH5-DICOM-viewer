@@ -164,7 +164,7 @@ Template.toolbarSection.helpers({
 
             buttonData.push({
                 id: 'toggleCineDialog',
-                title: '影片',
+                title: '帧速',
                 classes: 'imageViewerCommand',
                 iconClasses: 'fa fa-youtube-play',
                 active: () => $('#cineDialog').is(':visible')
