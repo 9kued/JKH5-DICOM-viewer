@@ -1,6 +1,7 @@
 {
-  "name": "9KH5-DICOM-viewer",
+  "name": "jkh5-dicom-viewer",
   "private": true,
+  "version": "1.0.0",
   "scripts": {
     "start": "meteor run"
   },
