@@ -47,6 +47,26 @@ const initHangingProtocol = () => {
     });
 };
 
+Meteor.startup(() => {
+    Session.set('TimepointsReady', false);
+    Session.set('MeasurementsReady', false);
+
+    // OHIF.viewer.displaySeriesQuickSwitch = true;
+    OHIF.viewer.stackImagePositionOffsetSynchronizer = new OHIF.viewerbase.StackImagePositionOffsetSynchronizer();
+
+    // Create the synchronizer used to update reference lines
+    OHIF.viewer.updateImageSynchronizer = new cornerstoneTools.Synchronizer('CornerstoneNewImage', cornerstoneTools.updateImageSynchronizer);
+
+    OHIF.viewer.metadataProvider = OHIF.cornerstone.metadataProvider;
+
+    // Metadata configuration
+    const metadataProvider = OHIF.viewer.metadataProvider;
+    cornerstone.metaData.addProvider(metadataProvider.getProvider());
+
+    // Target tools configuration
+    // OHIF.lesiontracker.configureTargetToolsHandles();
+});
+
 Template.viewer.onCreated(() => {
     const instance = Template.instance();
 
@@ -54,6 +74,30 @@ Template.viewer.onCreated(() => {
 
     instance.state.set('leftSidebar', Session.get('leftSidebar'));
     instance.state.set('rightSidebar', Session.get('rightSidebar'));
+
+    const viewportUtils = OHIF.viewerbase.viewportUtils;
+
+    OHIF.viewer.functionList = $.extend(OHIF.viewer.functionList, {
+        // toggleLesionTrackerTools: OHIF.lesiontracker.toggleLesionTrackerTools,
+        bidirectional: () => {
+            // Used for hotkeys
+            OHIF.viewerbase.toolManager.setActiveTool('bidirectional');
+        },
+        nonTarget: () => {
+            // Used for hotkeys
+            OHIF.viewerbase.toolManager.setActiveTool('nonTarget');
+        },
+        // Viewport functions
+        toggleCineDialog: viewportUtils.toggleCineDialog,
+        clearTools: viewportUtils.clearTools,
+        resetViewport: viewportUtils.resetViewport,
+        invert: viewportUtils.invert,
+        flipV: viewportUtils.flipV,
+        flipH: viewportUtils.flipH,
+        rotateL: viewportUtils.rotateL,
+        rotateR: viewportUtils.rotateR,
+        linkStackScroll: viewportUtils.linkStackScroll
+    });
 
     if (OHIF.viewer.data && OHIF.viewer.data.loadedSeriesData) {
         OHIF.log.info('Reloading previous loadedSeriesData');
@@ -126,6 +170,18 @@ Template.viewer.events({
         const instance = Template.instance();
         const current = instance.state.get('leftSidebar');
         instance.state.set('leftSidebar', !current);
+    },
+
+    'CornerstoneToolsMeasurementAdded .imageViewerViewport'(event, instance, eventData) {
+        OHIF.measurements.MeasurementHandlers.onAdded(event, instance, eventData);
+    },
+
+    'CornerstoneToolsMeasurementModified .imageViewerViewport'(event, instance, eventData) {
+        instance.measurementModifiedHandler(event, instance, eventData);
+    },
+
+    'CornerstoneToolsMeasurementRemoved .imageViewerViewport'(event, instance, eventData) {
+        OHIF.measurements.MeasurementHandlers.onRemoved(event, instance, eventData);
     }
 });
 

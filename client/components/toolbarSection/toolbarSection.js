@@ -27,14 +27,66 @@ Template.toolbarSection.helpers({
         };
     },
 
+    rightSidebarToggleButtonData() {
+        const instance = Template.instance();
+        return {
+            toggleable: true,
+            key: 'rightSidebar',
+            value: instance.data.state,
+            options: [{
+                value: 'measurements',
+                svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-measurements-lesions',
+                svgWidth: 18,
+                svgHeight: 10,
+                bottomLabel: '测量'
+            }]
+        };
+    },
+
     toolbarButtons() {
+        // Check if the measure tools shall be disabled
+        const isToolDisabled = false; //!Template.instance().data.timepointApi;
+
+        const targetSubTools = [];
+
+        targetSubTools.push({
+            id: 'bidirectional',
+            title: '双向',
+            classes: 'imageViewerTool rm-l-3',
+            svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-measure-target',
+            disabled: isToolDisabled
+        });
+
+        targetSubTools.push({
+            id: 'targetCR',
+            title: 'CR Target',
+            classes: 'imageViewerTool',
+            svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-measure-target-cr',
+            disabled: isToolDisabled
+        });
+
+        targetSubTools.push({
+            id: 'targetUN',
+            title: 'UN Target',
+            classes: 'imageViewerTool',
+            svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-measure-target-un',
+            disabled: isToolDisabled
+        });
+
         const extraTools = [];
 
         extraTools.push({
             id: 'stackScroll',
-            title: '滚动',
+            title: '序列滚动',
             classes: 'imageViewerTool',
             iconClasses: 'fa fa-bars'
+        });
+
+        extraTools.push({
+            id: 'rotateR',
+            title: '右旋转',
+            classes: 'imageViewerCommand',
+            svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-rotate-right'
         });
 
         extraTools.push({
@@ -73,10 +125,32 @@ Template.toolbarSection.helpers({
         });
 
         extraTools.push({
+            id: 'flipH',
+            title: '水平翻转',
+            classes: 'imageViewerCommand',
+            svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-flip-horizontal'
+        });
+
+        extraTools.push({
+            id: 'flipV',
+            title: '垂直翻转',
+            classes: 'imageViewerCommand',
+            svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-flip-vertical'
+        });
+
+        extraTools.push({
             id: 'invert',
             title: '反片',
             classes: 'imageViewerCommand',
             iconClasses: 'fa fa-adjust'
+        });
+
+        extraTools.push({
+            id: 'toggleDownloadDialog',
+            title: '下载',
+            classes: 'imageViewerCommand',
+            iconClasses: 'fa fa-camera',
+            active: () => $('#downloadDialog').is(':visible')
         });
 
         extraTools.push({
@@ -107,6 +181,31 @@ Template.toolbarSection.helpers({
             title: '移动',
             classes: 'imageViewerTool',
             svgLink: 'packages/ohif_viewerbase/assets/icons.svg#icon-tools-pan'
+        });
+
+        buttonData.push({
+            id: 'linkStackScroll',
+            title: '链接',
+            classes: 'imageViewerCommand toolbarSectionButton nonAutoDisableState',
+            svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-link',
+            disableFunction: OHIF.viewerbase.viewportUtils.isStackScrollLinkingDisabled
+        });
+
+        buttonData.push({
+            id: 'toggleTarget',
+            title: '标尺',
+            classes: 'rm-l-3',
+            svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-measure-target',
+            disabled: isToolDisabled,
+            subTools: targetSubTools
+        });
+
+        buttonData.push({
+            id: 'nonTarget',
+            title: '无标尺',
+            classes: 'imageViewerTool',
+            svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-measure-non-target',
+            disabled: isToolDisabled
         });
 
         buttonData.push({
@@ -209,6 +308,15 @@ Template.toolbarSection.helpers({
         return buttonData;
     }
 
+});
+
+Template.toolbarSection.events({
+    'click #toggleTarget'(event, instance) {
+        const $target = $(event.currentTarget);
+        if (!$target.hasClass('active') && $target.hasClass('expanded')) {
+            OHIF.viewerbase.toolManager.setActiveTool('bidirectional');
+        }
+    },
 });
 
 Template.toolbarSection.onRendered(function() {

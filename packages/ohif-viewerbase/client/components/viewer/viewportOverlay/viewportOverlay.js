@@ -241,7 +241,7 @@ Template.viewportOverlay.helpers({
 
         const oldestStudy = viewportStudiesArray[0];
         if (viewportOverlayUtils.formatDateTime(study.studyDate, study.studyTime) <= viewportOverlayUtils.formatDateTime(oldestStudy.studyDate, oldestStudy.studyTime)) {
-            return 'Prior';
+            return '先前的检查';
         }
     }
 });
