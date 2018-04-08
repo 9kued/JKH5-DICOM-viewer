@@ -171,18 +171,6 @@ Template.viewer.events({
         const current = instance.state.get('leftSidebar');
         instance.state.set('leftSidebar', !current);
     },
-
-    'CornerstoneToolsMeasurementAdded .imageViewerViewport'(event, instance, eventData) {
-        OHIF.measurements.MeasurementHandlers.onAdded(event, instance, eventData);
-    },
-
-    'CornerstoneToolsMeasurementModified .imageViewerViewport'(event, instance, eventData) {
-        instance.measurementModifiedHandler(event, instance, eventData);
-    },
-
-    'CornerstoneToolsMeasurementRemoved .imageViewerViewport'(event, instance, eventData) {
-        OHIF.measurements.MeasurementHandlers.onRemoved(event, instance, eventData);
-    }
 });
 
 Template.viewer.helpers({
